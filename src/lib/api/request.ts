@@ -36,7 +36,9 @@ export const apiRequest = <Schema extends z.ZodSchema<unknown>>(
       pipe(schema.safeParse(responseJson), (parsed) =>
         parsed.success
           ? TE.of(parsed.data)
-          : TE.left(`Request parsing failed: ${JSON.stringify(parsed.error)}`)
+          : TE.left(
+              `Request type validation failed: ${JSON.stringify(parsed.error)}`
+            )
       )
     ),
     sleepTE(1500),

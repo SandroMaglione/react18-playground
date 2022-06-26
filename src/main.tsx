@@ -7,6 +7,7 @@ import { SWRConfig } from "swr";
 import App from "./App";
 import ErrorReport from "./components/core/ErrorReport";
 import Spinner from "./components/core/Spinner";
+import { localStorageProviderSWR } from "./lib/api/cache";
 import "./styles/main.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <SWRConfig
       value={{
         suspense: true,
+        provider: localStorageProviderSWR,
         fetcher: (resource, init) =>
           fetch(resource, init).then((res) => res.json()),
       }}

@@ -2,7 +2,7 @@ import useSWR, { Fetcher, Key, SWRResponse } from "swr";
 
 type SWRResponseSuspense<Data = any, Error = any> = Omit<
   SWRResponse<Data, Error>,
-  "data" | "error"
+  "data" | "error" | "isLoading"
 > & {
   data: Data;
 };
@@ -21,14 +21,16 @@ export const useSWRSuspense = <
     suspense: true,
   });
 
-  if (typeof swrResponse.data === "undefined")
+  if (typeof swrResponse.data === "undefined" && !swrResponse.isLoading) {
     throw new SWRError("Error with undefined data in SWR");
+  }
 
-  if (typeof swrResponse.data === "undefined")
+  if (typeof swrResponse.error !== "undefined") {
     throw new SWRError("Found unexpected error in SWR");
+  }
 
   return {
-    data: swrResponse.data,
+    data: swrResponse.data!,
     isValidating: swrResponse.isValidating,
     mutate: swrResponse.mutate,
   };

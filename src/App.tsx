@@ -4,6 +4,7 @@ import DashboardNav from "./components/nav/dashboard/DashboardNav";
 import LoginNav from "./components/nav/login/LoginNav";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import PokemonPage from "./pages/PokemonPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       {/* Route pages */}
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/:id" element={<PokemonPage />} />
         <Route path="login" element={<LoginPage />} />
       </Routes>
     </>

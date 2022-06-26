@@ -1,10 +1,18 @@
 import { ReactElement } from "react";
 import { usePokemonById } from "../../hooks/usePokemonById";
+import Spinner from "../core/Spinner";
 
-export default function SinglePokemon(): ReactElement {
-  const { data } = usePokemonById(1);
+interface SinglePokemonProps {
+  id: number;
+}
+
+export default function SinglePokemon({
+  id,
+}: SinglePokemonProps): ReactElement {
+  const { data, isValidating } = usePokemonById(id);
   return (
     <div>
+      {isValidating && <Spinner />}
       <span>{data.name}</span>
       <img
         className="h-48 w-48"
