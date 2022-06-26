@@ -7,7 +7,7 @@ import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
-    <div>
+    <>
       {/* Navigation menu */}
       <Routes>
         <Route path="/" element={<AppNav />}>
@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
       </Routes>
-    </div>
+    </>
   );
 }
 
